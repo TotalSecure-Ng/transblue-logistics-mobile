@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:story_view/story_view.dart';
 
-import '../auth_screens/sign_in_screen.dart';
+import '../../utils/constants/colors.dart';
+import 'custom_story_view.dart';
 
 
 class WelcomeScreen extends StatelessWidget {
   final StoryController controller;
-  final List<StoryItem> storyItems;
+  final List<CustomStoryItem> storyItems;
 
   const WelcomeScreen({
     super.key,
@@ -14,12 +15,15 @@ class WelcomeScreen extends StatelessWidget {
     required this.storyItems}
       );
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StoryView(
         controller: controller,
         storyItems: storyItems,
+        // indicatorColor: Colors.black38,
+        indicatorForegroundColor: transBlueDarkCyan,
 
         // This get call on every story screen
         onStoryShow: (s){
@@ -28,11 +32,11 @@ class WelcomeScreen extends StatelessWidget {
 
         onComplete: (){
           debugPrint("Completed");
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context){
-              return const SignInScreen();
-            })
-          );
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(builder: (context){
+          //     return const SignInScreen();
+          //   })
+          // );
         },
 
         onVerticalSwipeComplete: (direction){
